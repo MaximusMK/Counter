@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Counter</title>
+    <link rel="shortcut icon" href="/ico.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>Counter</h1>
+        <div class="counter-value">
+            <span id="value">0</span>
+        </div>
+        <div class="button-container">
+            <button class="btn decrease">Decrease</button>
+            <button class="btn reset">Reset</button>
+            <button class="btn increase">Increase</button>
+        </div>
+    </div>
+ 
+    <script src="script.js"></script>
+</body>
+</html>
+'use strict'
+
+let count = 0;
+
+const value = document.querySelector('#value'),
+      btns = document.querySelectorAll('.btn');
+
+btns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    const styles = e.currentTarget.classList;
+
+    if (styles.contains('decrease')) {
+      count--;
+    } else 
+      if (styles.contains('increase')) {
+        count++;
+    } 
+    else {
+      count = 0;
+    }    
+
+    if (count > 0) {
+      value.style.color = "#090"
+    } else {
+      if (count < 0) {
+        value.style.color = "#900"
+      } else {
+        value.style.color = "#ddd"
+      }
+    }
+    value.textContent = count;
+  });
+});
+body {   
+    margin: 0;
+    padding: 0;
+    background-color: #222;   
+}
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 6em;
+    color: #999;
+    text-shadow: -2px -2px 1px #ddd;
+    
+}
+.counter-value {
+    margin: 0 auto;
+    text-align: center;
+    color: #ddd;
+}
+span {
+    text-align: center;
+    font-size: 6em;
+    font-weight: 700;
+
+    text-shadow: -2px -1px 1px #999;
+}
+.button-container {
+    text-align: center;
+}
+.btn {
+    height: 80px;
+    width: 150px;
+    margin: 10px;
+    font-size: 2em;
+    border: 0;
+    border-radius: 20px;
+
+    box-shadow: -5px -5px 3px #555;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+.btn:focus {
+    outline: 0;
+    border: 2px solid #fff;
+}
+.reset {
+    background-color: #999;
+}
+.increase {
+    background-color: #3b3;
+}
+.decrease {
+    background-color: #b33;
+}
